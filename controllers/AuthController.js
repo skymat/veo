@@ -5,7 +5,7 @@ import User from '../models/User';
 import {authorize} from '../filters/authorize';
 
 var authenticate = passport.authenticate('local', {
-	successRedirect: '/',
+	successRedirect: '/room',
 	failureRedirect: '/auth/login'
 });
 

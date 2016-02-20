@@ -1,15 +1,14 @@
 <section ng-controller="HomeCtrl as vm">
 
-	<div class="jumbotron text-center">
-		<div class="container">
-			<p class="lead">
-				VEO - Booster vos ventes web
-			</p>
-			<p>
-				<button ng-click="vm.createRoom()" class="btn btn-danger btn-lg">Create room</button>
-                <a href="#/public" class="btn btn-success btn-lg">Public room</a>
-			</p>
-		</div>
-	</div>
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1>VEO</h1>
+            <p class="lead">Salon de vente digitale</p>
+            <p>
+                <a href="#/{{vm.username}}" class="btn btn-primary btn-lg">Votre salon</a>
+                <button ng-click="vm.createRoom()" class="btn btn-default btn-lg">Salon temporaire</button>
+            </p>
+        </div>
+    </div>
 
 </section>

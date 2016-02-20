@@ -1,0 +1,24 @@
+<section ng-controller="RoomCtrl as vm">
+
+    <div class="row">
+        <div class="col-md-6">
+            <video id="local" style="width:100%;"></video>
+            <label class="btn btn-primary" for="fileselector">
+                <input class="pull-left btn btn-primary" type="file" id="fileselector" style="display:none;"> Transfert file
+            </label>
+            <button class="pull-right btn btn-default" ng-click="vm.toggleMute()">
+                <i class="fa fa-volume-off" ng-show="!vm.isMute"></i>
+                <i class="fa fa-volume-up" ng-show="vm.isMute"></i>
+            </button>
+            <button class="pull-right btn btn-default" ng-click="vm.toggleVideo()">
+                <i class="fa fa-play" ng-show="!vm.isPlaying"></i>
+                <i class="fa fa-pause" ng-show="vm.isPlaying"></i>
+            </button>
+        </div>
+        
+        <div class="col-md-6">
+            <div id="remotes"></div>
+        </div>
+    </div>
+
+</section>

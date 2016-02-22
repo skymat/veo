@@ -7,6 +7,7 @@ var webrtc, socket, _$scope;
 function RoomCtrl($routeParams, $scope) {
     _$scope = $scope;
     this.roomId = $routeParams.id;
+    this.username = window.veo.username;
     this.isMute = false;
     this.isPlaying = true;
     this.peers = [];
@@ -25,9 +26,9 @@ RoomCtrl.prototype.initializeWebRtc = function () {
     });
 
     webrtc.on('readyToCall', function () {
-        var id = 'veo_' + this.roomId;
-        webrtc.joinRoom('veo-' + id);
-        socket.emit('create_channel', id);
+        var room = 'veo_' + this.roomId;
+        webrtc.joinRoom('veo-' + room);
+        socket.emit('create_channel', {room: room, username: this.username});
     }.bind(this));
 
     webrtc.on('createdPeer', function (peer) {
@@ -56,7 +57,7 @@ RoomCtrl.prototype.initializeWebRtc = function () {
     });
     
     socket.on('chat_msg', function(msg){
-        this.chatMsgs.push(msg);
+        this.chatMsgs.unshift(msg);
         _$scope.$apply();
     }.bind(this));
     
@@ -90,7 +91,9 @@ RoomCtrl.prototype.onFileTransfertChange = function () {
 };
 
 RoomCtrl.prototype.sendMsg = function () {
-    socket.emit('chat_msg', this.newChatMsg);
+    if(this.newChatMsg != ''){
+        socket.emit('chat_msg', this.newChatMsg);
+    }
     this.newChatMsg = '';  
 };
 

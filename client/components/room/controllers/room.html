@@ -8,38 +8,49 @@
 
     <div class="row">
         <div class="col-md-3">
-            <video id="local" style="width:100%;"></video>
-            <label class="btn btn-primary" for="fileselector">
-                <input class="pull-left btn btn-primary" type="file" id="fileselector" style="display:none;"> Transfert file
-            </label>
-            <button class="pull-right btn btn-default" ng-click="vm.toggleMute()">
-                <i class="fa fa-volume-off" ng-show="!vm.isMute"></i>
-                <i class="fa fa-volume-up" ng-show="vm.isMute"></i>
-            </button>
-            <button class="pull-right btn btn-default" ng-click="vm.toggleVideo()">
-                <i class="fa fa-play" ng-show="!vm.isPlaying"></i>
-                <i class="fa fa-pause" ng-show="vm.isPlaying"></i>
-            </button>
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">{{vm.username}}</div>
+                <div class="panel-body">
+                    <video id="local" style="width:100%;"></video>
+                    <label class="btn btn-primary" for="fileselector">
+                        <input class="pull-left btn btn-primary" type="file" id="fileselector" style="display:none;"> Transfert file
+                    </label>
+
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                        <button class=" btn btn-default" ng-click="vm.toggleMute()">
+                            <i class="fa fa-volume-off" ng-show="!vm.isMute"></i>
+                            <i class="fa fa-volume-up" ng-show="vm.isMute"></i>
+                        </button>
+                        <button class="btn btn-default" ng-click="vm.toggleVideo()">
+                            <i class="fa fa-play" ng-show="!vm.isPlaying"></i>
+                            <i class="fa fa-pause" ng-show="vm.isPlaying"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
         <div class="col-md-6">
             <div id="remotes"></div>
         </div>
-        
+
         <div class="col-md-3">
-            <div>
-                <ul>
-                    <li ng-repeat="msg in vm.chatMsgs track by $index">
-                        {{msg}}
-                    </li>
-                </ul>
-                
-                <form novalidate ng-submit="vm.sendMsg()">
-                    <input type="text" ng-model="vm.newChatMsg" />
-                    <button type="submit" class="btn btn-default">Send</button>
-                </form>
-            </div>
+
+            <form novalidate ng-submit="vm.sendMsg()">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-paper-plane"></i></button>
+                    </span>
+                    <input type="text" ng-model="vm.newChatMsg" class="form-control" placeholder="Say something nice ...">
+                </div>
+            </form>
+            <br>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in vm.chatMsgs track by $index">
+                    <b>{{item.username}} :</b> {{item.msg}}
+                </li>
+            </ul>
         </div>
     </div>
-    
+
 </section>

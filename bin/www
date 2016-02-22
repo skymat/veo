@@ -13,15 +13,15 @@ var io = IO(server);
 io.on('connection', function (socket) {
 	console.log('a user connected in chat');
 	
-	socket.on('create_channel', function (room) {
-		console.log(room);
-		socket.join(room);
-		socket.room = room;
+	socket.on('create_channel', function (data) {
+        socket.join(data.room);
+		socket.room = data.room;
+        socket.username = data.username;
 	});
 	
 	socket.on('chat_msg', function (msg) {
-		console.log(socket.room);
-		io.to(socket.room).emit('chat_msg', msg);
+		console.log(socket.room + '@' + socket.username + ' : ' + msg);
+		io.to(socket.room).emit('chat_msg', {msg: msg, username: socket.username});
 	});
 
 	socket.on('disconnect', function () {

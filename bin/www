@@ -1,9 +1,30 @@
 require("babel/register");
 
-var Application =  require('../Application');
+var Application = require('../Application');
+var IO = require('socket.io');
 var dbContext = require('../models/dbContext');
 
 var a = new Application();
-a.run(function(){
+var server = a.run(function () {
 	console.log('application running at port :' + this.port);
 });
+var io = IO(server);
+
+io.on('connection', function (socket) {
+	console.log('a user connected in chat');
+	
+	socket.on('create_channel', function (room) {
+		console.log(room);
+		socket.join(room);
+		socket.room = room;
+	});
+	
+	socket.on('chat_msg', function (msg) {
+		console.log(socket.room);
+		io.to(socket.room).emit('chat_msg', msg);
+	});
+
+	socket.on('disconnect', function () {
+		console.log('user disconnected');
+	});
+});	

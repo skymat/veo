@@ -6,6 +6,6 @@ var RoomCtrl = require('./controllers/roomCtrl');
 
 // Home sub-module definition
 var room = angular.module('app.room', []);
-room.controller('RoomCtrl', ['$routeParams', RoomCtrl]);
+room.controller('RoomCtrl', ['$routeParams', '$scope', RoomCtrl]);
 
 module.exports = room;

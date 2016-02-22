@@ -1,8 +1,8 @@
 require("babel/register");
 
-var Application = require('../Application');
+var Application = require('../server/Application');
 var IO = require('socket.io');
-var dbContext = require('../models/dbContext');
+var dbContext = require('../server/models/dbContext');
 
 var a = new Application();
 var server = a.run(function () {

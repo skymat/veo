@@ -9,6 +9,7 @@ var webrtc, _$location;
 function HomeCtrl($location) {
     _$location = $location;
     this.username = window.veo.username;
+    this.isDemo = window.veo.demo || false;
 }
 
 HomeCtrl.prototype.createRoom = function () {

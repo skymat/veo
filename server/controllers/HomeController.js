@@ -5,7 +5,8 @@ class HomeController extends Controller {
 	
 	get routes(){
 		return {
-			'get /': 'index'
+			'get /': 'index',
+            'get /demo': 'demo'
 		}
 	}
 
@@ -13,6 +14,13 @@ class HomeController extends Controller {
 	// GET /
 	index(request, response){
 		response.render('home/index');
+	}
+    
+    	// index action
+	// GET /
+	demo(request, response){
+        response.locals.user = {username: 'anonymous'};
+		response.render('home/demo');
 	}
 }
 

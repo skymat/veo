@@ -1,17 +1,20 @@
 'use strict';
 
 var download = require('downloadjs'); 
-var webrtc, socket, _$scope;
+var webrtc, socket, _$scope, _toastr;
 
 // RoomCtrl class
-function RoomCtrl($routeParams, $scope) {
+function RoomCtrl($routeParams, $scope, toastr) {
     _$scope = $scope;
+    _toastr = toastr;
+    
     this.roomId = $routeParams.id;
     this.username = window.veo.username;
     this.isMute = false;
     this.isPlaying = true;
     this.peers = [];
     this.chatMsgs = [];
+    this.url = window.location.href;
     
     this.initializeWebRtc();
 }
@@ -86,8 +89,8 @@ RoomCtrl.prototype.toggleVideo = function () {
     this.isPlaying = !this.isPlaying;
 };
 
-RoomCtrl.prototype.onFileTransfertChange = function () {
-
+RoomCtrl.prototype.onCopySuccess = function () {
+    _toastr.success(this.url, 'Copied to clipboard');
 };
 
 RoomCtrl.prototype.sendMsg = function () {

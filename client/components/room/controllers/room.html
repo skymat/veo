@@ -5,6 +5,13 @@
 </style>
 
 <section ng-controller="RoomCtrl as vm">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-default" clipboard text="vm.url" on-copied="vm.onCopySuccess()">Share room</button>
+        </div>
+    </div>
+    <br>
 
     <div class="row">
         <div class="col-md-3">

@@ -5,6 +5,8 @@ window.jQuery = window.$ = require('jquery');
 var angular = require('angular');
 require('bootstrap');
 require('angular-route');
+require('angular-clipboard');
+require('angular-toastr');
 
 // Application routing and startup
 var Router  = require('./router');
@@ -17,6 +19,8 @@ require('./components/room/room');
 // Injection
 var app = angular.module('app', [
 	'ngRoute',
+    'angular-clipboard',
+    'toastr',
 	'app.home',
     'app.room'
 ]);

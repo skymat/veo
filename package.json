@@ -20,7 +20,9 @@
   "homepage": "https://github.com/microscopejs/web-mongo#readme",
   "dependencies": {
     "angular": "^1.3.11",
+    "angular-clipboard": "^1.3.0",
     "angular-route": "^1.3.11",
+    "angular-toastr": "^1.7.0",
     "babel": "^5.8.12",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
